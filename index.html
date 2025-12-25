@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="个人自我介绍 - 简历式单页" />
+    <title>自我介绍｜你的名字</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.06);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --border: rgba(255, 255, 255, 0.14);
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --accent: #6ea8ff;
+        --accent2: #7cf7c5;
+        --radius: 16px;
+        --max: 1040px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f5f7ff;
+          --panel: rgba(10, 20, 40, 0.05);
+          --text: rgba(10, 20, 40, 0.92);
+          --muted: rgba(10, 20, 40, 0.68);
+          --border: rgba(10, 20, 40, 0.12);
+          --shadow: 0 16px 50px rgba(10, 20, 40, 0.12);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 15% 10%, rgba(110, 168, 255, 0.35), transparent 55%),
+          radial-gradient(900px 700px at 90% 25%, rgba(124, 247, 197, 0.28), transparent 50%),
+          radial-gradient(700px 500px at 65% 95%, rgba(217, 110, 255, 0.18), transparent 55%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+        top: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.75);
+        color: white;
+        z-index: 9999;
+      }
+
+      .skip:focus {
+        left: 12px;
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 18px 64px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), transparent);
+      }
+
+      .nav {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 12px 18px;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 220px;
+      }
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(110, 168, 255, 0.9), rgba(124, 247, 197, 0.85));
+        box-shadow: var(--shadow);
+        flex: none;
+      }
+
+      .brand strong {
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+
+      .brand span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        color: var(--muted);
+      }
+
+      nav a[aria-current="true"],
+      nav a:hover {
+        border-color: var(--border);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+      }
+
+      main {
+        padding-top: 14px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 18px;
+        align-items: stretch;
+        margin-top: 18px;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .brand {
+          min-width: 0;
+        }
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .kicker b {
+        color: var(--text);
+      }
+
+      h1 {
+        margin: 12px 0 8px;
+        font-size: clamp(26px, 4vw, 40px);
+        line-height: 1.15;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .chip {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 10px;
+        background: rgba(255, 255, 255, 0.03);
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 13px;
+      }
+
+      .chip code {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .btn.primary {
+        border-color: rgba(110, 168, 255, 0.35);
+        background: linear-gradient(135deg, rgba(110, 168, 255, 0.28), rgba(124, 247, 197, 0.18));
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid rgba(110, 168, 255, 0.35);
+        outline-offset: 2px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .col-7 {
+        grid-column: span 7;
+      }
+      .col-5 {
+        grid-column: span 5;
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .col-12 {
+        grid-column: span 12;
+      }
+
+      @media (max-width: 860px) {
+        .col-7,
+        .col-5,
+        .col-6,
+        .col-12 {
+          grid-column: span 12;
+        }
+      }
+
+      h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .list {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .list li {
+        margin: 6px 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .pill b {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .item {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px 12px 10px;
+      }
+
+      .item-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+
+      .item-head strong {
+        font-size: 14px;
+      }
+
+      .item-head small {
+        color: var(--muted);
+      }
+
+      .item p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .skill {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        display: inline-flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 160px;
+      }
+
+      .skill .name {
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      .skill .desc {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      footer {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .mono {
+        font-family: var(--mono);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">跳到主要内容</a>
+
+    <header>
+      <div class="nav">
+        <div class="brand" aria-label="个人信息概览">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <strong id="nameText">你的名字</strong>
+            <span id="roleText">前端 / 全栈工程师｜城市</span>
+          </div>
+        </div>
+
+        <nav aria-label="页面导航">
+          <ul>
+            <li><a href="#about" data-nav>关于我</a></li>
+            <li><a href="#skills" data-nav>技能</a></li>
+            <li><a href="#experience" data-nav>经历</a></li>
+            <li><a href="#projects" data-nav>项目</a></li>
+            <li><a href="#contact" data-nav>联系</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="wrap" tabindex="-1">
+      <section class="hero" aria-label="自我介绍">
+        <article class="card">
+          <div class="kicker">
+            <span aria-hidden="true">👋</span>
+            <span>你好，我是 <b id="nameKicker">你的名字</b></span>
+          </div>
+          <h1>
+            <span id="headlineText">热爱把复杂问题做成简单体验</span>
+          </h1>
+          <p class="subtitle" id="summaryText">
+            我专注于 Web 应用的体验与工程化，擅长在需求不确定、节奏紧张的情况下把事情推进到可交付：拆解目标、明确边界、快速迭代、持续优化。
+          </p>
+
+          <div class="chips" aria-label="核心信息">
+            <div class="chip" title="工作年限">
+              <span aria-hidden="true">⏳</span>
+              <span><b id="yearsText">3 年+</b> <code>经验</code></span>
+            </div>
+            <div class="chip" title="当前关注">
+              <span aria-hidden="true">🎯</span>
+              <span><b id="focusText">性能 / 体验 / 可维护性</b> <code>方向</code></span>
+            </div>
+            <div class="chip" title="擅长协作方式">
+              <span aria-hidden="true">🤝</span>
+              <span><b id="collabText">跨团队协作</b> <code>协作</code></span>
+            </div>
+          </div>
+
+          <div class="cta" aria-label="快捷操作">
+            <a class="btn primary" href="#contact" data-nav>联系我</a>
+            <a class="btn" href="#projects" data-nav>查看项目</a>
+            <button class="btn" type="button" id="copyEmailBtn" aria-describedby="copyHint">复制邮箱</button>
+            <span id="copyHint" class="sr-only">点击按钮复制邮箱到剪贴板</span>
+          </div>
+        </article>
+
+        <aside class="card" aria-label="快速资料卡">
+          <h2>资料卡</h2>
+          <div class="grid" role="list">
+            <div class="col-12" role="listitem">
+              <span class="pill"><b>定位</b> <span id="locationText">中国·城市</span></span>
+            </div>
+            <div class="col-12" role="listitem">
+              <span class="pill"><b>状态</b> <span id="statusText">在职/可看机会</span></span>
+            </div>
+            <div class="col-12" role="listitem">
+              <span class="pill"><b>关键词</b> <span id="tagsText">Vue/React · TypeScript · Node</span></span>
+            </div>
+            <div class="col-12" role="listitem">
+              <span class="pill"><b>邮箱</b> <span class="mono" id="emailText">you@example.com</span></span>
+            </div>
+            <div class="col-12" role="listitem">
+              <span class="pill"><b>GitHub</b> <span class="mono" id="githubText">github.com/yourname</span></span>
+            </div>
+          </div>
+          <p class="muted" style="margin: 12px 0 0">
+            提示：本页为单文件，可直接发给面试官或放在 GitHub Pages。
+          </p>
+        </aside>
+      </section>
+
+      <section id="about" class="grid" aria-label="关于我">
+        <article class="card col-7">
+          <h2>关于我</h2>
+          <ul class="list">
+            <li>喜欢把业务目标转换为清晰的产品/技术拆解，并通过可度量指标验证效果（如首屏、转化、错误率）。</li>
+            <li>对工程质量敏感：可维护性、可测试性、可观测性和协作效率是长期收益。</li>
+            <li>在意“体验细节”：交互一致性、加载策略、无障碍与边界情况处理。</li>
+          </ul>
+        </article>
+
+        <aside class="card col-5">
+          <h2>我能带来的价值</h2>
+          <ul class="list">
+            <li>把需求不清晰的问题推进到可交付（对齐目标、澄清约束、拆分里程碑）。</li>
+            <li>把“能用”提升到“好用且可持续迭代”。</li>
+            <li>把个人能力沉淀成团队能力（文档、规范、脚手架与组件化）。</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="skills" class="grid" aria-label="技能">
+        <article class="card col-12">
+          <h2>技能栈</h2>
+          <p class="muted" style="margin: 0 0 12px">
+            下面内容由数据渲染生成，你只需要修改页面底部的 <span class="mono">profileData</span> 即可。
+          </p>
+          <div id="skillsRoot" class="skills" aria-label="技能列表"></div>
+        </article>
+      </section>
+
+      <section id="experience" class="grid" aria-label="经历">
+        <article class="card col-12">
+          <h2>工作 / 学习经历</h2>
+          <ol id="expRoot" class="timeline" aria-label="经历时间线"></ol>
+        </article>
+      </section>
+
+      <section id="projects" class="grid" aria-label="项目">
+        <article class="card col-12">
+          <h2>项目精选</h2>
+          <ol id="projRoot" class="timeline" aria-label="项目列表"></ol>
+        </article>
+      </section>
+
+      <section id="contact" class="grid" aria-label="联系">
+        <article class="card col-12">
+          <h2>联系我</h2>
+          <p class="muted" style="margin: 0 0 12px">
+            期待与你交流：机会、合作、开源、技术分享都欢迎。
+          </p>
+          <div class="grid">
+            <div class="col-6">
+              <div class="item">
+                <div class="item-head"><strong>邮箱</strong></div>
+                <p class="mono" id="emailText2">you@example.com</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="item">
+                <div class="item-head"><strong>社交</strong></div>
+                <p class="mono" id="socialText">GitHub / 公众号 / 语雀</p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="item">
+                <div class="item-head"><strong>一句话</strong></div>
+                <p id="closingText">如果你喜欢靠谱、清晰、可交付的合作方式，我们会很合拍。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <div>
+          <span>© <span id="yearNow"></span> </span>
+          <span id="footerName">你的名字</span>
+          <span class="muted"> · 单页自我介绍（HTML5）</span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- lodash：用于更安全/更方便地渲染数据（可删，但你说优先用 lodash） -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js" crossorigin="anonymous"></script>
+    <script>
+      // 你只需要修改这份数据即可完成“自定义自我介绍”
+      const profileData = {
+        name: "你的名字",
+        role: "前端 / 全栈工程师｜城市",
+        headline: "热爱把复杂问题做成简单体验",
+        summary:
+          "我专注于 Web 应用的体验与工程化，擅长在需求不确定、节奏紧张的情况下把事情推进到可交付：拆解目标、明确边界、快速迭代、持续优化。",
+        years: "3 年+",
+        focus: "性能 / 体验 / 可维护性",
+        collab: "跨团队协作",
+        location: "中国·城市",
+        status: "在职/可看机会",
+        tags: "Vue/React · TypeScript · Node",
+        email: "you@example.com",
+        github: "github.com/yourname",
+        social: "GitHub / 公众号 / 语雀",
+        closing: "如果你喜欢靠谱、清晰、可交付的合作方式，我们会很合拍。",
+        skills: [
+          { name: "TypeScript", desc: "类型设计、工程落地、可维护性" },
+          { name: "React / Vue", desc: "组件化、状态管理、性能优化" },
+          { name: "Node.js", desc: "BFF/工具链、接口整合、脚本自动化" },
+          { name: "工程化", desc: "Lint/Format、CI、构建性能、规范沉淀" },
+          { name: "性能优化", desc: "加载策略、缓存、监控、数据分析" },
+          { name: "协作沟通", desc: "需求澄清、方案评审、推动落地" },
+        ],
+        experience: [
+          {
+            title: "某公司 · 前端工程师",
+            time: "2023 - 至今",
+            desc: "负责中后台与业务增长相关项目：组件沉淀、性能优化、研发效率提升；与产品/后端/测试协作推进上线。",
+          },
+          {
+            title: "某团队 · 实习/学习经历",
+            time: "2021 - 2023",
+            desc: "参与项目迭代与需求交付，逐步建立工程化意识：规范、抽象、复用与可观测性。",
+          },
+        ],
+        projects: [
+          {
+            title: "项目 A：数据看板 / 中后台",
+            time: "2024",
+            desc: "统一指标口径与页面模板，沉淀可复用组件；首屏与交互响应提升，减少重复开发成本。",
+          },
+          {
+            title: "项目 B：业务增长活动页",
+            time: "2023",
+            desc: "搭建活动配置化方案，支持快速复用与灰度；通过埋点与漏斗分析持续优化转化。",
+          },
+        ],
+      };
+
+      const $ = (id) => document.getElementById(id);
+      const safe = (v) => _.escape(String(v == null ? "" : v));
+
+      function setText(id, value) {
+        const el = $(id);
+        if (!el) return;
+        el.textContent = value == null ? "" : String(value);
+      }
+
+      function renderSkills(skills) {
+        const root = $("skillsRoot");
+        if (!root) return;
+        root.innerHTML = _.map(skills || [], (s) => {
+          const name = safe(_.get(s, "name", ""));
+          const desc = safe(_.get(s, "desc", ""));
+          return `
+            <div class="skill" role="listitem">
+              <div class="name">${name}</div>
+              <div class="desc">${desc}</div>
+            </div>
+          `.trim();
+        }).join("");
+      }
+
+      function renderTimeline(rootId, items) {
+        const root = $(rootId);
+        if (!root) return;
+        root.innerHTML = _.map(items || [], (it) => {
+          const title = safe(_.get(it, "title", ""));
+          const time = safe(_.get(it, "time", ""));
+          const desc = safe(_.get(it, "desc", ""));
+          return `
+            <li class="item">
+              <div class="item-head">
+                <strong>${title}</strong>
+                <small>${time}</small>
+              </div>
+              <p>${desc}</p>
+            </li>
+          `.trim();
+        }).join("");
+      }
+
+      function hydrate() {
+        document.title = `自我介绍｜${profileData.name}`;
+        setText("nameText", profileData.name);
+        setText("nameKicker", profileData.name);
+        setText("footerName", profileData.name);
+        setText("roleText", profileData.role);
+        setText("headlineText", profileData.headline);
+        setText("summaryText", profileData.summary);
+        setText("yearsText", profileData.years);
+        setText("focusText", profileData.focus);
+        setText("collabText", profileData.collab);
+        setText("locationText", profileData.location);
+        setText("statusText", profileData.status);
+        setText("tagsText", profileData.tags);
+        setText("emailText", profileData.email);
+        setText("emailText2", profileData.email);
+        setText("githubText", profileData.github);
+        setText("socialText", profileData.social);
+        setText("closingText", profileData.closing);
+        setText("yearNow", String(new Date().getFullYear()));
+
+        renderSkills(profileData.skills);
+        renderTimeline("expRoot", profileData.experience);
+        renderTimeline("projRoot", profileData.projects);
+      }
+
+      function setupNav() {
+        const links = Array.from(document.querySelectorAll("[data-nav]"));
+        const sections = links
+          .map((a) => document.querySelector(a.getAttribute("href")))
+          .filter(Boolean);
+
+        function markActive() {
+          const y = window.scrollY || document.documentElement.scrollTop;
+          const current = _.maxBy(sections, (sec) => {
+            const top = sec.getBoundingClientRect().top + y;
+            return top <= y + 120 ? top : -Infinity;
+          });
+          links.forEach((a) => a.setAttribute("aria-current", "false"));
+          if (!current) return;
+          const active = links.find((a) => a.getAttribute("href") === `#${current.id}`);
+          if (active) active.setAttribute("aria-current", "true");
+        }
+
+        links.forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const href = a.getAttribute("href");
+            if (!href || !href.startsWith("#")) return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            history.replaceState(null, "", href);
+          });
+        });
+
+        window.addEventListener("scroll", _.throttle(markActive, 80), { passive: true });
+        markActive();
+      }
+
+      function setupCopyEmail() {
+        const btn = $("copyEmailBtn");
+        if (!btn) return;
+        btn.addEventListener("click", async () => {
+          const email = profileData.email || "";
+          try {
+            await navigator.clipboard.writeText(email);
+            btn.textContent = "已复制";
+            setTimeout(() => (btn.textContent = "复制邮箱"), 1200);
+          } catch {
+            // 兼容不支持 clipboard 的环境
+            const ta = document.createElement("textarea");
+            ta.value = email;
+            ta.setAttribute("readonly", "true");
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            btn.textContent = "已复制";
+            setTimeout(() => (btn.textContent = "复制邮箱"), 1200);
+          }
+        });
+      }
+
+      // 启动
+      hydrate();
+      setupNav();
+      setupCopyEmail();
+    </script>
+  </body>
+</html>
